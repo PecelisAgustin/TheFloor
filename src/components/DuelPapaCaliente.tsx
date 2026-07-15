@@ -1,9 +1,7 @@
-/* eslint-disable react-hooks/set-state-in-effect */
-/* eslint-disable react-hooks/immutability */
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { duelChannel } from "../utils/duelchannel";
+import { duelChannel, type DuelChannelEvent } from "../utils/duelchannel";
 import { fetchDeezerPreview } from "../utils/deezerPreview";
 import { useGameStore } from "../store/gameStore";
 
@@ -19,6 +17,7 @@ export function DuelPapaCaliente() {
     const [deads, setDeads] = useState(0)
     const addPoints = useGameStore((s) => s.addPoints)
     const [showResultsModal, setShowResultsModal] = useState(false);
+    const [timePerPlayer, setTimePerPlayer] = useState(initialTimePerPlayer)
 
     const [roundResults, setRoundResults] = useState<
         { playerName: string; points: number }[]
@@ -40,8 +39,6 @@ export function DuelPapaCaliente() {
 
     const [currentPlayerIndex, setCurrentPlayerIndex] =
         useState(0);
-
-    const [timePerPlayer, setTimePerPlayer] = useState(initialTimePerPlayer + (currentQuestion?.trackId ? 5 : 0))
 
     const [timeLeft, setTimeLeft] =
         useState(timePerPlayer);
@@ -70,8 +67,6 @@ export function DuelPapaCaliente() {
         (currentPlayerIndex + 1) % orderedPlayers.length
         ];
 
-
-
     useEffect(() => {
 
         const start =
@@ -88,13 +83,14 @@ export function DuelPapaCaliente() {
         }
 
 
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setOrderedPlayers(ordered);
 
     }, [players, actualPlayer]);
 
     useEffect(() => {
 
-        const handler = (event: MessageEvent) => {
+        const handler = (event: DuelChannelEvent) => {
 
             switch (event.data.type) {
 
@@ -125,7 +121,7 @@ export function DuelPapaCaliente() {
                         setFlashEffect(null);
 
 
-
+                        // eslint-disable-next-line react-hooks/immutability
                         nextPlayer();
                         setCurrentQuestion(event.data.question);
 
@@ -249,7 +245,7 @@ export function DuelPapaCaliente() {
         duelChannel.postMessage({ type: "NEW_QUESTION" });
 
         setTimeout(() => {
-            setTimeLeft(nextTime + (currentQuestion?.trackId ? 5 : 0));
+            setTimeLeft(nextTime);
         }, 3000);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -322,7 +318,7 @@ export function DuelPapaCaliente() {
             return;
 
         if (countdown === 0) {
-
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setPhase("playing");
 
             return;
@@ -356,7 +352,7 @@ export function DuelPapaCaliente() {
         }
 
         setCurrentPlayerIndex(nextIndex);
-        setTimeLeft(nextTime + (currentQuestion?.trackId ? 5 : 0));
+        setTimeLeft(nextTime);
 
     }
 

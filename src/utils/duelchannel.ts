@@ -13,8 +13,9 @@ const supabase = createClient(
     import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
-type DuelMessage = { type: string; [key: string]: unknown };
-type Handler = (event: { data: DuelMessage }) => void;
+export type DuelMessage = { type: string; [key: string]: any };
+export type DuelChannelEvent = { data: DuelMessage };
+type Handler = (event: DuelChannelEvent) => void;
 type PresenceHandler = (count: number) => void;
 
 class DuelChannel {

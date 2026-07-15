@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { duelChannel } from "../utils/duelchannel";
+import { duelChannel, type DuelChannelEvent } from "../utils/duelchannel";
 import { fetchDeezerPreview } from "../utils/deezerPreview";
 import { useGameStore } from "../store/gameStore";
 import { type CategoryQuestion } from "../DATA/categoriesAgrupment"
@@ -50,7 +50,7 @@ export function Duel() {
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
-        const handler = (event: MessageEvent) => {
+        const handler = (event: DuelChannelEvent) => {
 
             if (event.data.type === "START_DUEL") {
                 setDuelPhase("countdown");

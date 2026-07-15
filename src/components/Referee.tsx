@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { categoryQuestions, type CategoryQuestion } from "../DATA/categoriesAgrupment";
-import { duelChannel } from "../utils/duelchannel";
+import { duelChannel, type DuelChannelEvent } from "../utils/duelchannel";
 
 export function Referee() {
     const [searchParams] = useSearchParams();
@@ -26,7 +26,7 @@ export function Referee() {
 
 
     useEffect(() => {
-        const handler = (event: MessageEvent) => {
+        const handler = (event: DuelChannelEvent) => {
 
             if (event.data.type === "NEW_DUEL") {
                 setCurrentCategory(event.data.category);
