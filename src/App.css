@@ -1749,10 +1749,171 @@ body {
 }
 
 /* ==========================================================================
-   Lobby — pantalla de conexión (QR para el árbitro)
-   Misma estética que el resto de la app (card con blur + glow violeta,
-   pulseGlow ya declarado arriba). Pensado para no superar 100vh.
+   Selector de categorías (pantalla completa desde el Menu, sin scroll)
    ========================================================================== */
+
+.categories-btn {
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.categories-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
+}
+
+.categories-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1.5rem, 6vw, 4rem);
+
+    background: radial-gradient(
+            ellipse 80% 50% at 50% -10%,
+            rgba(124, 58, 237, 0.25),
+            transparent 60%
+        ),
+        var(--background);
+}
+
+.categories-close-btn {
+    position: absolute;
+    top: clamp(1rem, 2.5vw, 1.75rem);
+    right: clamp(1rem, 2.5vw, 1.75rem);
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.categories-close-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.categories-header {
+    flex-shrink: 0;
+    margin-bottom: 0.75rem;
+    padding-right: 3rem;
+}
+
+.categories-header h2 {
+    margin: 0 0 0.35rem;
+    font-size: clamp(1.25rem, 2.6vw, 2rem);
+}
+
+.categories-count {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.categories-actions {
+    flex-shrink: 0;
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.categories-actions .secondary-btn {
+    padding: 0.5rem 1.1rem;
+}
+
+.categories-list {
+    flex: 1;
+    min-height: 0;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 0.6rem;
+
+    overflow: hidden;
+}
+
+.category-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    padding: 0 0.9rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+
+    font-size: clamp(0.8rem, 1.4vw, 0.95rem);
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.category-checkbox:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.category-checkbox.is-checked {
+    border-color: var(--primary);
+    background: rgba(124, 58, 237, 0.15);
+}
+
+.category-checkbox input {
+    accent-color: var(--primary);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.categories-footer {
+    flex-shrink: 0;
+    padding-top: 1rem;
+}
+
+.categories-footer .start-btn {
+    width: 100%;
+}
+
+.categories-warning {
+    margin: 0 0 0.75rem;
+    padding: 0.6rem 0.9rem;
+    border-radius: 10px;
+    background: rgba(250, 204, 21, 0.12);
+    border: 1px solid rgba(250, 204, 21, 0.3);
+    color: #facc15;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* Muchas categorías + pantalla baja: más columnas, menos filas */
+@media (max-height: 700px) {
+    .categories-list {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.4rem;
+    }
+
+    .category-checkbox {
+        font-size: 0.78rem;
+    }
+}
 
 .lobby-page {
     position: relative;

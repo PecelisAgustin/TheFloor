@@ -61,6 +61,10 @@ interface GameStore {
    roomCode: string | null;
  
     setRoomCode: (code: string | null) => void;
+
+    selectedCategories: string[];
+    toggleCategory: (category: string) => void;
+    setSelectedCategories: (categories: string[]) => void;
 }
 
 export const useGameStore = create<GameStore>()(
@@ -69,6 +73,23 @@ export const useGameStore = create<GameStore>()(
 
       setRoomCode: (code) => set({ roomCode: code }),
       roomCode: null,
+
+      selectedCategories: categoryQuestions.map((c) => c[0]),
+
+      toggleCategory: (category) =>
+        set((state) => {
+          const isSelected = state.selectedCategories.includes(category);
+
+          const selectedCategories = isSelected
+            ? state.selectedCategories.filter((c) => c !== category)
+            : [...state.selectedCategories, category];
+
+          return { selectedCategories };
+        }),
+
+      setSelectedCategories: (categories) =>
+        set({ selectedCategories: categories }),
+
       initializeCategories: () => {
         const pool = [...categoryQuestions.map((c) => c[0])];
 
@@ -107,7 +128,10 @@ export const useGameStore = create<GameStore>()(
         let pool = [...state.availableCategories];
 
         if (pool.length === 0) {
-          pool = [...categoryQuestions.map((c) => c[0])];
+          pool =
+            state.selectedCategories.length > 0
+              ? [...state.selectedCategories]
+              : categoryQuestions.map((c) => c[0]);
         }
 
         const randomIndex = Math.floor(Math.random() * pool.length);
@@ -221,7 +245,7 @@ export const useGameStore = create<GameStore>()(
         }),
 
       resetGame: () =>
-        set({
+        set((state) => ({
           players: [],
           tiles: [],
           attackingPlayer: null,
@@ -235,8 +259,11 @@ export const useGameStore = create<GameStore>()(
           vueltasActuales: 1,
           ronda: 1,
           actualPlayer: 0,
-          availableCategories: categoryQuestions.map((c) => c[0]),
-        }),
+          availableCategories:
+            state.selectedCategories.length > 0
+              ? [...state.selectedCategories]
+              : categoryQuestions.map((c) => c[0]),
+        })),
 
       attackingPlayer: null,
       defendingPlayer: null,
@@ -254,6 +281,10 @@ export const useGameStore = create<GameStore>()(
           })),
           gameWinner: null,
           pendingPlayers: [],
+          availableCategories:
+            state.selectedCategories.length > 0
+              ? [...state.selectedCategories]
+              : categoryQuestions.map((c) => c[0]),
         })),
 
       setAttackingPlayer: (attacking) => set({ attackingPlayer: attacking }),

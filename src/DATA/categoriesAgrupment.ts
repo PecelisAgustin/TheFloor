@@ -9,7 +9,6 @@ import { frasesConocidas } from "../categories/frases";
 import { englishWords } from "../categories/ingles";
 import { logos } from "../categories/logos";
 import { mathQuestions } from "../categories/matematica";
-import { mitologia } from "../categories/mitologia A MODIFICAR";
 import { movieQuestions } from "../categories/peliculas";
 import { tablaPeriodica } from "../categories/tablaPeriodica";
 import { portugueseWords } from "../categories/portugues";
@@ -50,7 +49,6 @@ export const categoryQuestions: CategoryGroup[] = [
     ["Deportistas", deportistas],
     ["Cantantes", cantantes],
     ["Actores/Directores", actores],
-    ["Mitologia", mitologia],
     ["Comidas", comidas],
     ["Portugues", portugueseWords],
     ["Cientificos/Inventores", cientificosInventores],

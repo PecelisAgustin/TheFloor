@@ -30,6 +30,8 @@ export function MenuPapaCaliente() {
         (s) => s.setTimePerPlayer
     );
 
+    const selectedCategories = useGameStore((s) => s.selectedCategories)
+
     return (
         <main className="menu">
             <button
@@ -87,7 +89,7 @@ export function MenuPapaCaliente() {
 
                 <div className="config-item">
                     <label htmlFor="vueltas">
-                        Cantidad de vueltas (maximo )
+                        Cantidad de vueltas (maximo {totalPlayers > 0 ? Math.floor(selectedCategories.length / totalPlayers) : '?'})
                     </label>
 
                     <input

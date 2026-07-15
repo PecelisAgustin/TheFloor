@@ -18,6 +18,7 @@ export function Referee() {
         if (!room) return;
 
         duelChannel.connect(room);
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setConnected(true);
     }, [room]);
 

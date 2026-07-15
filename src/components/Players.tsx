@@ -11,6 +11,7 @@ export function Players() {
 
     const players = useGameStore((s) => s.players);
     const totalPlayers = useGameStore((s) => s.totalPlayers);
+    const selectedCategories = useGameStore((s) => s.selectedCategories);
     const setPlayerCategory = useGameStore(
         (s) => s.setPlayerCategory
     );
@@ -34,12 +35,16 @@ export function Players() {
         .filter(Boolean);
 
     const availableCategories =
-        categoryQuestions.filter(
-            ([categoryName]) =>
-                !usedCategories.includes(
-                    categoryName
-                )
-        );
+        categoryQuestions
+            .filter(([categoryName]) =>
+                selectedCategories.includes(categoryName)
+            )
+            .filter(
+                ([categoryName]) =>
+                    !usedCategories.includes(
+                        categoryName
+                    )
+            );
 
     const allPlayersHaveCategory =
         players.length === totalPlayers &&
@@ -63,6 +68,13 @@ export function Players() {
             </div>
 
             <h1>Jugadores</h1>
+
+            {selectedCategories.length < totalPlayers && (
+                <p className="categories-warning">
+                    Tenés {selectedCategories.length} categoría(s) elegida(s) y {totalPlayers} jugadores.
+                    Elegí más categorías desde el menú principal o vas a repetir.
+                </p>
+            )}
 
             <div className="player-input">
                 <input
