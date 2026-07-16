@@ -157,9 +157,9 @@ export const useGameStore = create<GameStore>()(
           });
         }
       },
-      vueltasActuales: 0,
-      vueltas: 0,
-      ronda: 0,
+      vueltasActuales: 1,
+      vueltas: 1,
+      ronda: 1,
       setCantidadVueltas(vueltas) {
         set({ vueltas: vueltas });
       },

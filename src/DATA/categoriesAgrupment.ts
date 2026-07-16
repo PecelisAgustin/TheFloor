@@ -24,6 +24,13 @@ import { canciones2010s } from "../categories/canciones2010sadelante";
 import { futbolistasActuales } from "../categories/futbolistasActuales";
 import { futbolistasRetirados } from "../categories/futbolistasRetirados";
 import { mitologia } from "../categories/mitologia";
+import { equivalencias } from "../categories/equivalencias";
+import { geometria } from "../categories/geometria";
+import { numerosRomanos } from "../categories/romanos";
+import { sucesiones } from "../categories/sucesiones";
+import { lugaresMonumentos } from "../categories/lugaresMonumetos";
+import { ciudades } from "../categories/ciudades";
+import { cuerpo } from "../categories/cuerpo";
 
 export interface CategoryQuestion {
     text?: string;
@@ -64,5 +71,12 @@ export const categoryQuestions: CategoryGroup[] = [
     ["Musica 2010s adelante", canciones2010s],
     ["Futbolistas actuales", futbolistasActuales],
     ["Futbolistas retirados", futbolistasRetirados],
-    ["Mitologia", mitologia]
+    ["Mitologia", mitologia],
+    ["Equivalencias", equivalencias],
+    ["Geometria", geometria],
+    ["Numeros romanos", numerosRomanos],
+    ["Sucesiones", sucesiones],
+    ["Lugares/monumentos", lugaresMonumentos],
+    ["Ciudades", ciudades],
+    ["Cuerpo", cuerpo]
 ];
