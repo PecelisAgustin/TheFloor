@@ -21,6 +21,9 @@ import { canciones80s } from "../categories/canciones80s";
 import { canciones90s } from "../categories/canciones90s";
 import { canciones2000s } from "../categories/canciones2000s";
 import { canciones2010s } from "../categories/canciones2010sadelante";
+import { futbolistasActuales } from "../categories/futbolistasActuales";
+import { futbolistasRetirados } from "../categories/futbolistasRetirados";
+import { mitologia } from "../categories/mitologia";
 
 export interface CategoryQuestion {
     text?: string;
@@ -46,7 +49,7 @@ export const categoryQuestions: CategoryGroup[] = [
     ["Refranes/Frases", frasesConocidas],
     ["Peliculas", movieQuestions],
     ["Peliculas animadas", animatedMovieQuestions],
-    ["Deportistas", deportistas],
+    ["Deportistas(no fut)", deportistas],
     ["Cantantes", cantantes],
     ["Actores/Directores", actores],
     ["Comidas", comidas],
@@ -58,5 +61,8 @@ export const categoryQuestions: CategoryGroup[] = [
     ["Musica 80s o antes", canciones80s],
     ["Musica 90s", canciones90s],
     ["Musica 2000s", canciones2000s],
-    ["Musica 2010s adelante", canciones2010s]
+    ["Musica 2010s adelante", canciones2010s],
+    ["Futbolistas actuales", futbolistasActuales],
+    ["Futbolistas retirados", futbolistasRetirados],
+    ["Mitologia", mitologia]
 ];
