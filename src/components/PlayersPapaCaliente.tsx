@@ -7,6 +7,7 @@ export function PlayersPapaCaliente() {
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
+    const [duplicateError, setDuplicateError] = useState(false);
 
     const players = useGameStore((s) => s.players);
     const totalPlayers = useGameStore((s) => s.totalPlayers);
@@ -21,7 +22,14 @@ export function PlayersPapaCaliente() {
 
         if (players.length >= totalPlayers) return;
 
-        addPlayer(trimmedName);
+        const added = addPlayer(trimmedName);
+
+        if (!added) {
+            setDuplicateError(true);
+            return;
+        }
+
+        setDuplicateError(false);
         setName("");
     };
 
@@ -48,9 +56,10 @@ export function PlayersPapaCaliente() {
                     type="text"
                     value={name}
                     placeholder="Nombre del jugador"
-                    onChange={(e) =>
-                        setName(e.target.value)
-                    }
+                    onChange={(e) => {
+                        setName(e.target.value);
+                        setDuplicateError(false);
+                    }}
                     onKeyDown={(e) => {
                         if (e.key === "Enter") {
                             handleAdd();
@@ -67,6 +76,12 @@ export function PlayersPapaCaliente() {
                     Agregar
                 </button>
             </div>
+
+            {duplicateError && (
+                <p className="menu-warning">
+                    Ya hay un jugador con ese nombre.
+                </p>
+            )}
 
             <div className="player-list">
                 {players.map((player, index) => (

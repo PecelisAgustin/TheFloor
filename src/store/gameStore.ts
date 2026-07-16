@@ -23,7 +23,7 @@ interface GameStore {
   setTotalPlayers: (total: number) => void;
   setTimePerPlayer: (time: number) => void;
 
-  addPlayer: (name: string) => void;
+  addPlayer: (name: string) => boolean;
   removePlayer: (id: string) => void;
   resetPlayers: () => void;
 
@@ -299,13 +299,26 @@ export const useGameStore = create<GameStore>()(
 
       setTimePerPlayer: (timePerPlayer) => set({ timePerPlayer }),
 
-      addPlayer: (name) =>
+      addPlayer: (name) => {
+        const trimmedName = name.trim();
+
+        const alreadyExists = get().players.some(
+          (player) =>
+            player.name.trim().toLowerCase() ===
+            trimmedName.toLowerCase(),
+        );
+
+        if (alreadyExists) return false;
+
         set((state) => ({
           players: [
             ...state.players,
-            { id: generateId(), name, points: 0 },
+            { id: generateId(), name: trimmedName, points: 0 },
           ],
-        })),
+        }));
+
+        return true;
+      },
 
       removePlayer: (id) =>
         set((state) => ({

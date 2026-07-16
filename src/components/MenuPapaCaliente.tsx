@@ -32,6 +32,25 @@ export function MenuPapaCaliente() {
 
     const selectedCategories = useGameStore((s) => s.selectedCategories)
 
+    const maxVueltas =
+        totalPlayers > 0
+            ? Math.floor(selectedCategories.length / totalPlayers)
+            : 0;
+
+    const notEnoughPlayers = totalPlayers <= 2;
+    const notEnoughCategories = selectedCategories.length < totalPlayers;
+    const timeTooLow = timePerPlayer < 10;
+    const notEnoughCategoriesForVueltas =
+        selectedCategories.length < vueltas * totalPlayers;
+    const invalidVueltas = vueltas < 1;
+
+    const canStart =
+        !notEnoughPlayers &&
+        !notEnoughCategories &&
+        !timeTooLow &&
+        !notEnoughCategoriesForVueltas &&
+        !invalidVueltas;
+
     return (
         <main className="menu">
             <button
@@ -53,7 +72,7 @@ export function MenuPapaCaliente() {
                     <input
                         id="players"
                         type="number"
-                        min="2"
+                        min="3"
                         max="50"
                         value={totalPlayers}
                         onChange={(e) => {
@@ -68,6 +87,12 @@ export function MenuPapaCaliente() {
                     />
                 </div>
 
+                {notEnoughPlayers && (
+                    <p className="menu-warning">
+                        Necesitás al menos 3 jugadores.
+                    </p>
+                )}
+
                 <div className="config-item">
                     <label htmlFor="time">
                         Tiempo Inicial (deciende de a 5s)
@@ -76,7 +101,7 @@ export function MenuPapaCaliente() {
                     <input
                         id="time"
                         type="number"
-                        min="5"
+                        min="10"
                         step="5"
                         value={timePerPlayer}
                         onChange={(e) =>
@@ -87,15 +112,29 @@ export function MenuPapaCaliente() {
                     />
                 </div>
 
+                {timeTooLow && (
+                    <p className="menu-warning">
+                        El tiempo inicial tiene que ser de al menos 10 segundos.
+                    </p>
+                )}
+
+                {notEnoughCategories && (
+                    <p className="menu-warning">
+                        Tenés {selectedCategories.length} categoría(s) seleccionada(s) y {totalPlayers} jugadores.
+                        Elegí más desde "🗂️ Categorías".
+                    </p>
+                )}
+
                 <div className="config-item">
                     <label htmlFor="vueltas">
-                        Cantidad de vueltas (maximo {totalPlayers > 0 ? Math.floor(selectedCategories.length / totalPlayers) : '?'})
+                        Cantidad de vueltas (maximo {totalPlayers > 0 ? maxVueltas : '?'})
                     </label>
 
                     <input
                         id="vueltas"
                         type="number"
                         min="1"
+                        max={maxVueltas || undefined}
                         step="1"
                         value={vueltas}
                         onChange={(e) =>
@@ -106,9 +145,23 @@ export function MenuPapaCaliente() {
                     />
                 </div>
 
+                {invalidVueltas && (
+                    <p className="menu-warning">
+                        Tiene que haber al menos 1 vuelta.
+                    </p>
+                )}
+
+                {!invalidVueltas && !notEnoughCategories && notEnoughCategoriesForVueltas && (
+                    <p className="menu-warning">
+                        Con {totalPlayers} jugadores y {vueltas} vuelta(s) necesitás {vueltas * totalPlayers} categorías,
+                        y tenés {selectedCategories.length}. Bajá las vueltas o elegí más categorías.
+                    </p>
+                )}
+
                 <button
                     onClick={() => navigate("/players-papa-caliente")}
                     className="start-btn"
+                    disabled={!canStart}
                 >
                     Comenzar partida
                 </button>

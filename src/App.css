@@ -184,6 +184,14 @@ body {
         0 0 30px rgba(124, 58, 237, 0.7);
 }
 
+.start-btn:disabled {
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.5);
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
 
 /*--------------------PLAYER---------------------------*/
 
@@ -1892,7 +1900,8 @@ body {
     width: 100%;
 }
 
-.categories-warning {
+.categories-warning,
+.menu-warning {
     margin: 0 0 0.75rem;
     padding: 0.6rem 0.9rem;
     border-radius: 10px;

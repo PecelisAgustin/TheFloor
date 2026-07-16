@@ -24,6 +24,16 @@ export function MenuTheFloor() {
         (s) => s.setTimePerPlayer
     );
 
+    const selectedCategories = useGameStore(
+        (s) => s.selectedCategories
+    );
+
+    const notEnoughPlayers = totalPlayers <= 2;
+    const notEnoughCategories = selectedCategories.length < totalPlayers;
+    const timeTooLow = timePerPlayer < 10;
+
+    const canStart = !notEnoughPlayers && !notEnoughCategories && !timeTooLow;
+
     return (
         <main className="menu">
             <button
@@ -45,7 +55,7 @@ export function MenuTheFloor() {
                     <input
                         id="players"
                         type="number"
-                        min="2"
+                        min="3"
                         max="50"
                         value={totalPlayers}
                         onChange={(e) => {
@@ -60,6 +70,12 @@ export function MenuTheFloor() {
                     />
                 </div>
 
+                {notEnoughPlayers && (
+                    <p className="menu-warning">
+                        Necesitás al menos 3 jugadores.
+                    </p>
+                )}
+
                 <div className="config-item">
                     <label htmlFor="time">
                         Tiempo por jugador
@@ -68,7 +84,7 @@ export function MenuTheFloor() {
                     <input
                         id="time"
                         type="number"
-                        min="5"
+                        min="10"
                         step="5"
                         value={timePerPlayer}
                         onChange={(e) =>
@@ -79,9 +95,23 @@ export function MenuTheFloor() {
                     />
                 </div>
 
+                {timeTooLow && (
+                    <p className="menu-warning">
+                        El tiempo por jugador tiene que ser de al menos 10 segundos.
+                    </p>
+                )}
+
+                {notEnoughCategories && (
+                    <p className="menu-warning">
+                        Tenés {selectedCategories.length} categoría(s) seleccionada(s) y {totalPlayers} jugadores.
+                        Cada jugador necesita una categoría distinta — elegí más desde "🗂️ Categorías".
+                    </p>
+                )}
+
                 <button
                     onClick={() => navigate("/players")}
                     className="start-btn"
+                    disabled={!canStart}
                 >
                     Comenzar partida
                 </button>
@@ -89,6 +119,3 @@ export function MenuTheFloor() {
         </main>
     );
 }
-
-
-
