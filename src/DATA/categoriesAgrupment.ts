@@ -9,7 +9,7 @@ import { frasesConocidas } from "../categories/frases";
 import { englishWords } from "../categories/ingles";
 import { logos } from "../categories/logos";
 import { mathQuestions } from "../categories/matematica";
-import { movieQuestions } from "../categories/peliculas";
+import { peliculasEsteSiglo } from "../categories/peliculasEsteSiglo";
 import { tablaPeriodica } from "../categories/tablaPeriodica";
 import { portugueseWords } from "../categories/portugues";
 import { animatedMovieQuestions } from "../categories/peliculasAnimadas";
@@ -31,6 +31,7 @@ import { sucesiones } from "../categories/sucesiones";
 import { lugaresMonumentos } from "../categories/lugaresMonumetos";
 import { ciudades } from "../categories/ciudades";
 import { cuerpo } from "../categories/cuerpo";
+import { peliculasSigloPasado } from "../categories/peliculasSigloPasado";
 
 export interface CategoryQuestion {
     text?: string;
@@ -54,7 +55,8 @@ export const categoryQuestions: CategoryGroup[] = [
     ["Tabla periodica", tablaPeriodica],
     ["Equipos futbol", escudosFutbol],
     ["Refranes/Frases", frasesConocidas],
-    ["Peliculas", movieQuestions],
+    ["Peliculas siglo XXI", peliculasEsteSiglo],
+    ["Peliculas siglo XX", peliculasSigloPasado],
     ["Peliculas animadas", animatedMovieQuestions],
     ["Deportistas(no fut)", deportistas],
     ["Cantantes", cantantes],
