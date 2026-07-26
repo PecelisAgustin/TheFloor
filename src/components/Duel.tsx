@@ -366,8 +366,7 @@ export function Duel() {
                 <div className="answer-box">
                     {revealAnswer
                         ? [
-                            currentQuestion?.answer,
-                            ...(currentQuestion?.possibleAnswers ?? []),
+                            currentQuestion?.possibleAnswers && currentQuestion.possibleAnswers.length > 0 ? currentQuestion?.possibleAnswers[0] : currentQuestion?.answer
                         ]
                             .filter(Boolean)
                             .join(" / ")

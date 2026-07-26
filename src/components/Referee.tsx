@@ -63,8 +63,6 @@ export function Referee() {
             remainingQuestions.current = [...all].filter(q => q !== currentQuestion);
         }
 
-        if (remainingQuestions.current.length === 0) return null;
-
         const randomIndex = Math.floor(Math.random() * remainingQuestions.current.length);
         const question = remainingQuestions.current[randomIndex];
 
@@ -90,7 +88,6 @@ export function Referee() {
         if (!nextQuestion) return;
 
         setCurrentQuestion(nextQuestion);
-        console.log(currentQuestion)
         duelChannel.postMessage({ type: "CORRECT_QUESTION", question: nextQuestion });
         setButtonsDisabled(true)
         setTimeout(() => {

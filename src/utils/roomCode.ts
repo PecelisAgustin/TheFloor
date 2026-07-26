@@ -1,6 +1,4 @@
-// src/utils/roomCode.ts
-
-const CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // sin O/0/I/1 para que no se confundan al leerlo
+const CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
 export function generateRoomCode(length = 4): string {
     let code = "";

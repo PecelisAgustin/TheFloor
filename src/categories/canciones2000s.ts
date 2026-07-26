@@ -85,7 +85,6 @@ export const canciones2000s: CategoryQuestion[] = [
     { answer: "Puente - Gustavo Cerati", trackId: 4006956 },
     { answer: "Adiós - Gustavo Cerati", trackId: 13255142 },
     { answer: "El salmón - Andrés Calamaro", trackId: 37212481 },
-    { answer: "Flaca - Andrés Calamaro", trackId: 3085538 },
     { answer: "Laten Bolas - Bersuit Vergarabat", trackId: 44392051 },
     { answer: "Sr. Cobranza - Bersuit Vergarabat", trackId: 533162692 },
     { answer: "Un Pacto (Live In Buenos Aires / 2001) - Bersuit Vergarabat", trackId: 2256073 },

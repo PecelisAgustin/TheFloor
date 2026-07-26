@@ -1,6 +1,7 @@
 import type { CategoryQuestion } from "../DATA/categoriesAgrupment";
 
 export const frasesConocidas: CategoryQuestion[] = [
+    // Refranes clásicos
     { text: "Más vale pájaro en mano...", answer: "que cien volando" },
     { text: "A caballo regalado...", answer: "no se le miran los dientes" },
     { text: "No por mucho madrugar...", answer: "amanece más temprano" },
@@ -22,22 +23,43 @@ export const frasesConocidas: CategoryQuestion[] = [
     { text: "Lo prometido es...", answer: "deuda" },
     { text: "Nunca es tarde...", answer: "si la dicha es buena" },
 
+    // Refranes bien argentinos
+    { text: "El que se fue a Sevilla...", answer: "perdió su silla" },
+    { text: "A otro perro...", answer: "con ese hueso" },
+    { text: "Genio y figura...", answer: "hasta la sepultura" },
+    { text: "Éramos pocos y parió...", answer: "la abuela" },
+    { text: "Cuando el río suena...", answer: "agua trae" },
+    { text: "Camarón que se duerme...", answer: "se lo lleva la corriente" },
+    { text: "El que a hierro mata...", answer: "a hierro muere" },
+    { text: "En Argentina atamos todo con...", answer: "alambre" },
+    { text: "No hay peor ciego...", answer: "que el que no quiere ver" },
+    { text: "El que peca y reza...", answer: "empata" },
+    { text: "Zapatero a tus...", answer: "zapatos" },
+    { text: "A lo hecho...", answer: "pecho" },
+    { text: "Cada loco con...", answer: "su tema" },
+    { text: "El que no llora...", answer: "no mama" },
+    { text: "Ande yo caliente...", answer: "ríase la gente" },
+    { text: "Al que no le gusta el caldo...", answer: "se le dan dos tazas" },
+    { text: "Loro viejo no aprende...", answer: "a hablar" },
+    { text: "Más vale solo...", answer: "que mal acompañado" },
+    { text: "El que con lobos anda...", answer: "a aullar se enseña" },
+    { text: "Para muestra basta...", answer: "un botón" },
+
+    // Frases filosóficas
     { text: "Pienso, luego...", answer: "existo" },
     { text: "Solo sé que...", answer: "no sé nada" },
-    { text: "El hombre es la medida...", answer: "de todas las cosas" },
     { text: "Conócete a ti...", answer: "mismo" },
     { text: "El conocimiento es...", answer: "poder" },
     { text: "La vida examinada no merece...", answer: "ser vivida" },
     { text: "El fin justifica...", answer: "los medios" },
     { text: "Divide y...", answer: "vencerás" },
-    { text: "El hombre es un lobo...", answer: "para el hombre" },
     { text: "La religión es el opio...", answer: "del pueblo" },
     { text: "Dios ha...", answer: "muerto" },
     { text: "Lo que no me mata...", answer: "me hace más fuerte" },
-    { text: "Piensa diferente...", answer: "para ver diferente" },
     { text: "La imaginación es más importante...", answer: "que el conocimiento" },
     { text: "La educación es el arma más poderosa...", answer: "para cambiar el mundo" },
 
+    // Frases históricas y célebres
     { text: "Tengo un sueño...", answer: "que un día esta nación se levantará" },
     { text: "Un pequeño paso para el hombre...", answer: "un gran salto para la humanidad" },
     { text: "Vine, vi...", answer: "y vencí" },
@@ -46,14 +68,13 @@ export const frasesConocidas: CategoryQuestion[] = [
     { text: "Sé el cambio...", answer: "que quieres ver en el mundo" },
     { text: "Prefiero morir de pie...", answer: "que vivir arrodillado" },
     { text: "El gobierno del pueblo, por el pueblo...", answer: "y para el pueblo" },
-    { text: "Sí se puede...", answer: "si se intenta" },
     { text: "La libertad no es nada...", answer: "si no incluye la libertad de equivocarse" },
     { text: "La vida es aquello que pasa...", answer: "mientras haces otros planes" },
     { text: "El tiempo es...", answer: "oro" },
     { text: "Nunca interrumpas a tu enemigo...", answer: "cuando está cometiendo un error" },
     { text: "La victoria tiene cien padres...", answer: "pero la derrota es huérfana" },
-    { text: "El conocimiento habla...", answer: "pero la sabiduría escucha" },
 
+    // Frases de películas (español)
     { text: "Hasta el infinito...", answer: "y más allá" },
     { text: "Que la fuerza...", answer: "te acompañe" },
     { text: "Yo soy...", answer: "tu padre" },
@@ -68,8 +89,16 @@ export const frasesConocidas: CategoryQuestion[] = [
     { text: "No puedes manejar...", answer: "la verdad" },
     { text: "Siempre nos quedará...", answer: "París" },
     { text: "Bond, James...", answer: "Bond" },
-    { text: "Que coman...", answer: "pastel" },
+    { text: "Hasta la vista...", answer: "baby" },
+    { text: "Aquí está...", answer: "Johnny" },
+    { text: "Voy a hacerle una oferta...", answer: "que no podrá rechazar" },
+    { text: "Después de todo, mañana será...", answer: "otro día" },
+    { text: "Soy el rey del...", answer: "mundo" },
+    { text: "Vamos a necesitar un barco...", answer: "más grande" },
+    { text: "E.T. teléfono...", answer: "mi casa" },
+    { text: "Todos tenemos un plan hasta que nos rompen...", answer: "la boca" },
 
+    // Refranes clásicos (segunda tanda)
     { text: "Nunca dejes para mañana...", answer: "lo que puedas hacer hoy" },
     { text: "El saber no ocupa...", answer: "lugar" },
     { text: "La práctica hace...", answer: "al maestro" },
@@ -86,6 +115,7 @@ export const frasesConocidas: CategoryQuestion[] = [
     { text: "El que avisa...", answer: "no traiciona" },
     { text: "A buen entendedor...", answer: "pocas palabras" },
 
+    // Frases en inglés (películas y marcas)
     { text: "I have...", answer: "a dream" },
     { text: "To be or not...", answer: "to be" },
     { text: "May the Force...", answer: "be with you" },
@@ -96,9 +126,17 @@ export const frasesConocidas: CategoryQuestion[] = [
     { text: "Impossible is...", answer: "nothing" },
     { text: "The truth is...", answer: "out there" },
     { text: "Keep calm and...", answer: "carry on" },
+    { text: "Why so...", answer: "serious" },
+    { text: "Show me the...", answer: "money" },
+    { text: "You had me at...", answer: "hello" },
+    { text: "Say hello to my little...", answer: "friend" },
+    { text: "Frankly, my dear, I don't give a...", answer: "damn" },
+    { text: "I see dead...", answer: "people" },
+    { text: "Where we're going we don't need...", answer: "roads" },
+    { text: "Life finds a...", answer: "way" },
 
+    // Frases motivacionales
     { text: "No se trata de cuánto golpeas...", answer: "sino de cuánto aguantas" },
-    { text: "La fortuna sonríe...", answer: "a los valientes" },
     { text: "El éxito es ir de fracaso...", answer: "en fracaso sin perder el entusiasmo" },
     { text: "Nunca, nunca, nunca...", answer: "te rindas" },
     { text: "La mejor venganza...", answer: "es el éxito masivo" },
@@ -108,6 +146,7 @@ export const frasesConocidas: CategoryQuestion[] = [
     { text: "El éxito depende...", answer: "de la preparación previa" },
     { text: "El genio es uno por ciento inspiración...", answer: "y noventa y nueve por ciento transpiración" },
 
+    // Frases célebres (tercera tanda)
     { text: "No preguntes qué puede hacer tu país por ti...", answer: "pregunta qué puedes hacer tú por tu país" },
     { text: "El único límite...", answer: "es el que te impones a ti mismo" },
     { text: "Quien tiene un porqué para vivir...", answer: "puede soportar casi cualquier cómo" },
@@ -119,6 +158,7 @@ export const frasesConocidas: CategoryQuestion[] = [
     { text: "La mejor manera de predecir el futuro...", answer: "es crearlo" },
     { text: "El secreto para salir adelante...", answer: "es comenzar" },
 
+    // Frases variadas
     { text: "Nunca discutas con un idiota...", answer: "te arrastrará a su nivel" },
     { text: "La experiencia es el nombre...", answer: "que damos a nuestros errores" },
     { text: "La paciencia es amarga...", answer: "pero su fruto es dulce" },
@@ -130,10 +170,10 @@ export const frasesConocidas: CategoryQuestion[] = [
     { text: "La vida comienza...", answer: "donde termina tu zona de confort" },
     { text: "Todo parece imposible...", answer: "hasta que se hace" },
 
+    // Refranes clásicos (cuarta tanda)
     { text: "Más sabe el diablo...", answer: "por viejo que por diablo" },
     { text: "El que tiene boca...", answer: "se equivoca" },
     { text: "No hay rosa...", answer: "sin espinas" },
-    { text: "A mal entendedor...", answer: "peor respuesta" },
     { text: "Quien mucho duerme...", answer: "poco aprende" },
     { text: "Agua que no has de beber...", answer: "déjala correr" },
     { text: "Del dicho al hecho...", answer: "hay mucho trecho" },

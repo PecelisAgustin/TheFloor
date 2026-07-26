@@ -70,22 +70,7 @@ export const mathQuestions: CategoryQuestion[] = [
   { text: "√1024", answer: "32" },
   { text: "125 ÷ 0.5", answer: "250" },
   { text: "50% de 50%", answer: "25%" },
-    // Ecuaciones
-  { text: "x + 8 = 15", answer: "7" },
-  { text: "x - 12 = 9", answer: "21" },
-  { text: "2x = 18", answer: "9" },
-  { text: "3x = 27", answer: "9" },
-  { text: "4x = 36", answer: "9" },
-  { text: "5x = 40", answer: "8" },
-  { text: "x ÷ 4 = 8", answer: "32" },
-  { text: "x ÷ 5 = 12", answer: "60" },
-  { text: "2x + 6 = 20", answer: "7" },
-  { text: "3x - 6 = 15", answer: "7" },
-  { text: "x + 25 = 100", answer: "75" },
-  { text: "50 - x = 18", answer: "32" },
-  { text: "100 = 4x", answer: "25" },
-  { text: "7x = 49", answer: "7" },
-  { text: "9x = 81", answer: "9" },
+
 
   // Factoriales
   { text: "3!", answer: "6" },
@@ -149,4 +134,73 @@ export const mathQuestions: CategoryQuestion[] = [
   { text: "500 ÷ 20", answer: "25" },
   { text: "64 ÷ 8", answer: "8" },
   { text: "72 ÷ 9", answer: "8" },
+
+  { text: "7.5 + 2.5", answer: "10" },
+  { text: "15.5 - 5.5", answer: "10" },
+  { text: "2.5 × 4", answer: "10" },
+  { text: "12.5 ÷ 2.5", answer: "5" },
+  { text: "0.5 × 80", answer: "40" },
+  { text: "1.5 × 20", answer: "30" },
+  { text: "3.5 + 6.5", answer: "10" },
+  { text: "25.5 + 4.5", answer: "30" },
+  { text: "100.5 - 50.5", answer: "50" },
+  { text: "7.2 + 8.8", answer: "16" },
+
+  // Pi
+  { text: "π × 2", answer: "6.28" },
+  { text: "π × 10", answer: "31.4" },
+  { text: "2π + 3π", answer: "5π" },
+  { text: "π² (aprox.)", answer: "9.87" },
+  { text: "3π (aprox.)", answer: "9.42" },
+  { text: "4π (aprox.)", answer: "12.56" },
+  { text: "5π (aprox.)", answer: "15.7" },
+  { text: "π ÷ 2 (aprox.)", answer: "1.57" },
+  { text: "π × 6 (aprox.)", answer: "18.84" },
+  { text: "10π - 5π", answer: "5π" },
+
+  // Infinito
+  { text: "∞ + 100", answer: "∞" },
+  { text: "∞ × 5", answer: "∞" },
+  { text: "∞ ÷ 10", answer: "∞" },
+  { text: "1 ÷ ∞", answer: "0" },
+  { text: "100 ÷ ∞", answer: "0" },
+  { text: "∞ + ∞", answer: "∞" },
+  { text: "∞ - 50", answer: "∞" },
+  { text: "∞ × ∞", answer: "∞" },
+
+   { text: "e⁰", answer: "1" },
+  { text: "2⁰", answer: "1" },
+  { text: "100⁰", answer: "1" },
+  { text: "(-5)²", answer: "25" },
+  { text: "(-3)³", answer: "-27" },
+
+  { text: "3! + 4!", answer: "30" },
+
+  // Raíces más variadas
+  { text: "√121", answer: "11" },
+  { text: "√324", answer: "18" },
+  { text: "√441", answer: "21" },
+  { text: "√784", answer: "28" },
+  { text: "√1225", answer: "35" },
+  { text: "∛27", answer: "3" },
+  { text: "∛64", answer: "4" },
+  { text: "∛125", answer: "5" },
+  { text: "∛216", answer: "6" },
+  { text: "∛1000", answer: "10" },
+
+  // Operaciones combinadas difíciles
+  { text: "5 + 3 × 4²", answer: "53" },
+  { text: "(10 + 5)²", answer: "225" },
+  { text: "100 - 5 × 12", answer: "40" },
+  { text: "(50 ÷ 5) + 7²", answer: "59" },
+  { text: "2³ + 3³", answer: "35" },
+  { text: "10² - 6²", answer: "64" },
+  { text: "(20 × 5) ÷ 4", answer: "25" },
+  { text: "15² ÷ 5", answer: "45" },
+  { text: "4³ - 20", answer: "44" },
+  { text: "6² + 8²", answer: "100" },
+
+  { text: "√(25 + 11)", answer: "6" },
+  { text: "√(100 + 44)", answer: "12" },
+  { text: "2 × π × 5 (aprox.)", answer: "31.4" },
 ];

@@ -20,7 +20,7 @@ import { series } from "../categories/series";
 import { canciones80s } from "../categories/canciones80s";
 import { canciones90s } from "../categories/canciones90s";
 import { canciones2000s } from "../categories/canciones2000s";
-import { canciones2010s } from "../categories/canciones2010sadelante";
+import { canciones2010s } from "../categories/canciones2010s";
 import { futbolistasActuales } from "../categories/futbolistasActuales";
 import { futbolistasRetirados } from "../categories/futbolistasRetirados";
 import { mitologia } from "../categories/mitologia";
@@ -28,10 +28,11 @@ import { equivalencias } from "../categories/equivalencias";
 import { geometria } from "../categories/geometria";
 import { numerosRomanos } from "../categories/romanos";
 import { sucesiones } from "../categories/sucesiones";
-import { lugaresMonumentos } from "../categories/lugaresMonumetos";
-import { ciudades } from "../categories/ciudades";
 import { cuerpo } from "../categories/cuerpo";
 import { peliculasSigloPasado } from "../categories/peliculasSigloPasado";
+import { canciones2020s } from "../categories/canciones2020s";
+import { cancionesPeliculas } from "../categories/cancionesPeliculas";
+import { ecuaciones } from "../categories/ecuaciones";
 
 export interface CategoryQuestion {
     text?: string;
@@ -48,37 +49,46 @@ export type CategoryGroup = [
 
 export const categoryQuestions: CategoryGroup[] = [
     ["Capitales", capitals],
-    ["Ingles", englishWords],
-    ["Matematica", mathQuestions],
     ["Banderas", flags],
-    ["Logos marcas", logos],
-    ["Tabla periodica", tablaPeriodica],
+    
     ["Equipos futbol", escudosFutbol],
+    ["Futbolistas actuales", futbolistasActuales],
+    ["Futbolistas retirados", futbolistasRetirados],
+    ["Deportistas(no fut)", deportistas],
+
     ["Refranes/Frases", frasesConocidas],
+    ["Ingles", englishWords],
+    ["Portugues", portugueseWords],
+
+    ["Cuerpo", cuerpo],
+    ["Comidas", comidas],
+    ["Tabla periodica", tablaPeriodica],
+    ["Cientificos/Inventores", cientificosInventores],
+    ["Politicos", personajesHistoricos],
+    ["Mitologia", mitologia],
+
+    ["Series", series],
+    ["Libros por emojis", librosPorEmojis],
+    ["Actores/Directores", actores],
     ["Peliculas siglo XXI", peliculasEsteSiglo],
     ["Peliculas siglo XX", peliculasSigloPasado],
     ["Peliculas animadas", animatedMovieQuestions],
-    ["Deportistas(no fut)", deportistas],
-    ["Cantantes", cantantes],
-    ["Actores/Directores", actores],
-    ["Comidas", comidas],
-    ["Portugues", portugueseWords],
-    ["Cientificos/Inventores", cientificosInventores],
-    ["Libros por emojis", librosPorEmojis],
-    ["Politicos", personajesHistoricos],
-    ["Series", series],
+    ["Canciones peliculas", cancionesPeliculas],
     ["Musica 80s o antes", canciones80s],
     ["Musica 90s", canciones90s],
     ["Musica 2000s", canciones2000s],
-    ["Musica 2010s adelante", canciones2010s],
-    ["Futbolistas actuales", futbolistasActuales],
-    ["Futbolistas retirados", futbolistasRetirados],
-    ["Mitologia", mitologia],
+    ["Musica 2010s", canciones2010s],
+    ["Musica 2020s", canciones2020s],
+    ["Cantantes", cantantes],
+
+    ["Logos marcas", logos],
+
+    ["Cuentas", mathQuestions],
     ["Equivalencias", equivalencias],
     ["Geometria", geometria],
+    ["Ecuaciones", ecuaciones],
     ["Numeros romanos", numerosRomanos],
     ["Sucesiones", sucesiones],
-    ["Lugares/monumentos", lugaresMonumentos],
-    ["Ciudades", ciudades],
-    ["Cuerpo", cuerpo]
+    
+    
 ];

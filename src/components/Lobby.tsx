@@ -16,7 +16,6 @@ export function Lobby() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    // "game" = tablero (the-floor) | "papa-caliente" = hot potato
     const mode = searchParams.get("mode") ?? "game";
 
     const [roomCode] = useState(() => generateRoomCode());

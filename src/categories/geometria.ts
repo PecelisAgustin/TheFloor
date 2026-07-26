@@ -107,7 +107,7 @@ export const geometria: CategoryQuestion[] = [
   { text: "Triángulo → ° suma", answer: "180" },
   { text: "Cuadrilátero → ° suma", answer: "360" },
   { text: "Pentágono → ° suma", answer: "540" },
-  { text: "Hexágono → °suma", answer: "720" },
+  { text: "Hexágono → ° suma", answer: "720" },
   { text: "Heptágono → ° suma", answer: "900" },
   { text: "Octágono → ° suma", answer: "1080" },
   { text: "Decágono → ° suma", answer: "1440" },
@@ -145,8 +145,6 @@ export const geometria: CategoryQuestion[] = [
 { text: "30° → minutos", answer: "1800" },
 { text: "45° → minutos", answer: "2700" },
 { text: "90° → minutos", answer: "5400" },
-{ text: "180° → minutos", answer: "10800" },
-{ text: "360° → minutos", answer: "21600" },
 
 { text: "60' → grados", answer: "1" },
 { text: "120' → grados", answer: "2" },
@@ -171,8 +169,6 @@ export const geometria: CategoryQuestion[] = [
 // Grados ↔ segundos
 { text: "1° → segundos", answer: "3600" },
 { text: "2° → segundos", answer: "7200" },
-{ text: "5° → segundos", answer: "18000" },
-{ text: "10° → segundos", answer: "36000" },
 
 { text: "3600'' → grados", answer: "1" },
 { text: "7200'' → grados", answer: "2" },

@@ -1,11 +1,3 @@
-// src/utils/duelchannel.ts
-//
-// Reemplaza BroadcastChannel (solo mismo navegador/dispositivo) por
-// Supabase Realtime Broadcast (cruza dispositivos por internet).
-// Mantiene la MISMA interfaz que usaban Duel.tsx y DuelPapaCaliente.tsx,
-// así esos componentes no necesitan cambios. Suma presencia para saber
-// cuántos dispositivos están conectados a la sala.
-
 import { createClient, type RealtimeChannel } from "@supabase/supabase-js";
 
 const supabase = createClient(
@@ -13,6 +5,7 @@ const supabase = createClient(
     import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DuelMessage = { type: string; [key: string]: any };
 export type DuelChannelEvent = { data: DuelMessage };
 type Handler = (event: DuelChannelEvent) => void;
