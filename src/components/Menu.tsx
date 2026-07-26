@@ -30,7 +30,7 @@ export function Menu() {
             <div className="game-mode-menu__grid">
                 <button
                     className="game-mode-menu__card"
-                    onClick={() => navigate("/menu-the-floor")}
+                    onClick={() => navigate("/menu?mode=game")}
                 >
                     <h2>The Floor</h2>
                     <p>Modo por categorías con tablero.</p>
@@ -38,7 +38,7 @@ export function Menu() {
 
                 <button
                     className="game-mode-menu__card"
-                    onClick={() => navigate("/menu-papa-caliente")}
+                    onClick={() => navigate("/menu?mode=papa-caliente")}
                 >
                     <h2>Papa Caliente</h2>
                     <p>Modo de preguntas rápidas.</p>

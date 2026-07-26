@@ -38,7 +38,6 @@ class DuelChannel {
 
         this.channel.on("presence", { event: "sync" }, () => {
             const state = this.channel?.presenceState() ?? {};
-            // Restamos 1 (nuestra propia presencia) para saber cuántos OTROS hay
             const otherCount = Math.max(Object.keys(state).length - 1, 0);
             this.presenceHandlers.forEach((h) => h(otherCount));
         });
@@ -81,7 +80,6 @@ class DuelChannel {
         this.handlers.delete(handler);
     }
 
-    // Devuelve una función para desuscribirse
     onPresenceChange(handler: PresenceHandler): () => void {
         this.presenceHandlers.add(handler);
 

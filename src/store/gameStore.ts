@@ -169,7 +169,6 @@ export const useGameStore = create<GameStore>()(
       popPendingPlayer: () => {
         const state = get();
 
-        // Si el pool está vacío, recargar con todos los jugadores vivos
         const pool =
           state.pendingPlayers.length > 0
             ? state.pendingPlayers
@@ -194,7 +193,6 @@ export const useGameStore = create<GameStore>()(
           const gameWinner =
             updatedPlayers.length === 1 ? updatedPlayers[0] : null;
 
-          // Sacarlo del pool pendiente si estaba
           const updatedPending = state.pendingPlayers.filter(
             (p) => p.name !== name,
           );

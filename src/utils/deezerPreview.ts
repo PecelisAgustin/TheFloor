@@ -1,8 +1,3 @@
-// src/utils/deezerPreview.ts
-//
-// Pide un preview FRESCO a Deezer usando JSONP (carga un <script>, no un fetch),
-// así evitamos el bloqueo de CORS sin necesitar backend propio.
-//
 // Uso:
 //   const url = await fetchDeezerPreview(3135556);
 //   audioRef.current.src = url;

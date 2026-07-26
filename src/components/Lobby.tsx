@@ -1,5 +1,3 @@
-// src/pages/Lobby.tsx
-
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
@@ -54,12 +52,7 @@ export function Lobby() {
 
     function handleBack() {
         duelChannel.disconnect();
-
-        if (mode === "papa-caliente") {
-            navigate("/players-papa-caliente");
-        } else {
-            navigate("/players");
-        }
+        navigate(`/players?mode=${mode}`);
     }
 
     return (
@@ -83,6 +76,17 @@ export function Lobby() {
                 <p className="room-code">
                     Código: <strong>{roomCode}</strong>
                 </p>
+                <p className="room-code">
+                    O entrá al link:
+                </p>
+                <a
+                    className="lobby-link"
+                    href={joinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {joinUrl}
+                </a>
 
                 <p className={`referee-status ${refereeConnected ? "is-connected" : "is-waiting"}`}>
                     <span className="status-dot" />

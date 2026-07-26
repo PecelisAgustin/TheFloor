@@ -49,6 +49,29 @@ export function Duel() {
 
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
+    const turnRef = useRef(turn);
+    const attackerTimeRef = useRef(attackerTime);
+    const defenderTimeRef = useRef(defenderTime);
+    const winnerRef = useRef(winner);
+
+    useEffect(() => {
+        turnRef.current = turn;
+    }, [turn]);
+
+    useEffect(() => {
+        attackerTimeRef.current = attackerTime;
+    }, [attackerTime]);
+
+    useEffect(() => {
+        defenderTimeRef.current = defenderTime;
+    }, [defenderTime]);
+
+    useEffect(() => {
+        winnerRef.current = winner;
+    }, [winner]);
+
+    console.log({ attackingPlayer, defendingPlayer })
+
     useEffect(() => {
         const handler = (event: DuelChannelEvent) => {
 
@@ -59,23 +82,34 @@ export function Duel() {
                 setCurrentQuestion(event.data.question);
             } else if (event.data.type === "CORRECT_QUESTION") {
 
+                if (winnerRef.current) return;
+
+                if (turnRef.current === "attacker" && attackerTimeRef.current <= 0) {
+                    setAttackerTime(1);
+                } else if (turnRef.current === "defender" && defenderTimeRef.current <= 0) {
+                    setDefenderTime(1);
+                }
+
                 setRevealAnswer(true);
                 setFlashEffect("correct");
+                setTurn((s) =>
+                    s === "attacker"
+                        ? "defender"
+                        : "attacker"
+                );
 
                 setTimeout(() => {
                     setFlashEffect(null);
                     setRevealAnswer(false);
-                    setTurn((s) =>
-                        s === "attacker"
-                            ? "defender"
-                            : "attacker"
-                    );
+
 
                     setCurrentQuestion(
                         event.data.question
                     );
-                }, 300);
+                }, 100);
             } else if (event.data.type === "PASS_QUESTION") {
+
+                if (winnerRef.current) return;
 
                 setFlashEffect("pass");
                 setRevealAnswer(true);
@@ -108,47 +142,50 @@ export function Duel() {
         if (attackerTime === 0 && defendingPlayer && attackingPlayer) {
             duelChannel.postMessage({ type: "END_DUEL" });
 
-
+            const finishRound = () => {
+                setWinner(defendingPlayer);
+                conquerTerritory(defendingPlayer, attackingPlayer)
+                killPlayer(attackingPlayer.name)
+            };
 
             if (flashEffect) {
                 // eslint-disable-next-line react-hooks/set-state-in-effect
                 setFlashEffect("pass");
                 setRevealAnswer(true);
 
-
                 setTimeout(() => {
                     setFlashEffect(null);
                     setRevealAnswer(false);
-                    setWinner(defendingPlayer);
-                    conquerTerritory(defendingPlayer, attackingPlayer)
-                    killPlayer(attackingPlayer.name)
+                    finishRound();
                 }, 3000);
             } else {
-                setWinner(defendingPlayer);
-                conquerTerritory(defendingPlayer, attackingPlayer)
-                killPlayer(attackingPlayer.name)
+                finishRound();
             }
-
 
             setTimeout(() => {
                 navigate('/game')
             }, 5000);
-        }
-
-        if (defenderTime === 0 && defendingPlayer && attackingPlayer) {
+        } else if (defenderTime === 0 && defendingPlayer && attackingPlayer) {
             duelChannel.postMessage({ type: "END_DUEL" });
 
-            setFlashEffect("pass");
-            setRevealAnswer(true);
+            const finishRound = () => {
+                setWinner(attackingPlayer);
+                conquerTerritory(attackingPlayer, defendingPlayer)
+                killPlayer(defendingPlayer.name)
+            };
 
+            if (flashEffect) {
+                setFlashEffect("pass");
+                setRevealAnswer(true);
 
-            setTimeout(() => {
-                setFlashEffect(null);
-                setRevealAnswer(false);
-                setWinner(defendingPlayer);
-                conquerTerritory(defendingPlayer, attackingPlayer)
-                killPlayer(attackingPlayer.name)
-            }, 3000);
+                setTimeout(() => {
+                    setFlashEffect(null);
+                    setRevealAnswer(false);
+                    finishRound();
+                }, 3000);
+            } else {
+                finishRound();
+            }
 
             setTimeout(() => {
                 navigate('/game')

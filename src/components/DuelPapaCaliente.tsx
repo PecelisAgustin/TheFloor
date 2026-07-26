@@ -67,6 +67,29 @@ export function DuelPapaCaliente() {
         (currentPlayerIndex + 1) % orderedPlayers.length
         ];
 
+    const orderedPlayersRef = useRef(orderedPlayers);
+    const currentPlayerIndexRef = useRef(currentPlayerIndex);
+    const timePerPlayerRef = useRef(timePerPlayer);
+    const timeLeftRef = useRef(timeLeft);
+
+    useEffect(() => {
+        orderedPlayersRef.current = orderedPlayers;
+    }, [orderedPlayers]);
+
+    useEffect(() => {
+        currentPlayerIndexRef.current = currentPlayerIndex;
+    }, [currentPlayerIndex]);
+
+    useEffect(() => {
+        timePerPlayerRef.current = timePerPlayer;
+    }, [timePerPlayer]);
+
+    useEffect(() => {
+        timeLeftRef.current = timeLeft;
+    }, [timeLeft]);
+
+    const roundLockRef = useRef(false);
+
     useEffect(() => {
 
         const start =
@@ -112,6 +135,14 @@ export function DuelPapaCaliente() {
                     if (!currentPlayer)
                         return;
 
+                    if (roundLockRef.current)
+                        return;
+
+                    if (timeLeftRef.current <= 0)
+                        return;
+
+                    roundLockRef.current = true;
+
                     setRevealAnswer(true);
                     setFlashEffect("correct");
 
@@ -124,6 +155,8 @@ export function DuelPapaCaliente() {
                         // eslint-disable-next-line react-hooks/immutability
                         nextPlayer();
                         setCurrentQuestion(event.data.question);
+
+                        roundLockRef.current = false;
 
                     }, 300);
 
@@ -160,7 +193,6 @@ export function DuelPapaCaliente() {
                 handler
             );
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPlayer]);
 
     useEffect(() => {
@@ -184,6 +216,9 @@ export function DuelPapaCaliente() {
         if (phase !== "playing") return;
         if (timeLeft > 0) return;
         if (!currentPlayer) return;
+
+        if (roundLockRef.current) return;
+        roundLockRef.current = true;
 
         prePoints.current.push({
             playerId: currentPlayer.id,
@@ -223,6 +258,8 @@ export function DuelPapaCaliente() {
             setShowResultsModal(true);
             setPhase("finished");
 
+            roundLockRef.current = false;
+
             return;
         }
 
@@ -246,6 +283,7 @@ export function DuelPapaCaliente() {
 
         setTimeout(() => {
             setTimeLeft(nextTime);
+            roundLockRef.current = false;
         }, 3000);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -337,16 +375,21 @@ export function DuelPapaCaliente() {
     }, [countdown, phase]);
 
     function nextPlayer() {
-        const nextIndex =
-            (currentPlayerIndex + 1) % orderedPlayers.length;
+        const players = orderedPlayersRef.current;
+        const index = currentPlayerIndexRef.current;
+        const currentTime = timePerPlayerRef.current;
 
-        let nextTime = timePerPlayer;
+        if (players.length === 0) return;
+
+        const nextIndex = (index + 1) % players.length;
+
+        let nextTime = currentTime;
 
         if (nextIndex === 0) {
             nextTime =
-                timePerPlayer > 10
-                    ? timePerPlayer - 5
-                    : timePerPlayer - 1;
+                currentTime > 10
+                    ? currentTime - 5
+                    : currentTime - 1;
 
             setTimePerPlayer(nextTime);
         }

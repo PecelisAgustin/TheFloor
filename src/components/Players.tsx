@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useGameStore } from "../store/gameStore";
-import { useNavigate } from "react-router-dom";
 import type { Player } from "../types/player";
 import { categoryQuestions } from "../DATA/categoriesAgrupment";
 
 export function Players() {
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const mode = searchParams.get("mode") === "papa-caliente" ? "papa-caliente" : "game";
+    const hasCategories = mode === "game";
+
     const [name, setName] = useState("");
     const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
     const [duplicateError, setDuplicateError] = useState(false);
@@ -13,9 +17,7 @@ export function Players() {
     const players = useGameStore((s) => s.players);
     const totalPlayers = useGameStore((s) => s.totalPlayers);
     const selectedCategories = useGameStore((s) => s.selectedCategories);
-    const setPlayerCategory = useGameStore(
-        (s) => s.setPlayerCategory
-    );
+    const setPlayerCategory = useGameStore((s) => s.setPlayerCategory);
 
     const addPlayer = useGameStore((s) => s.addPlayer);
     const removePlayer = useGameStore((s) => s.removePlayer);
@@ -42,30 +44,31 @@ export function Players() {
         .map((p) => p.category)
         .filter(Boolean);
 
-    const availableCategories =
-        categoryQuestions
+    const availableCategories = hasCategories
+        ? categoryQuestions
             .filter(([categoryName]) =>
                 selectedCategories.includes(categoryName)
             )
             .filter(
                 ([categoryName]) =>
-                    !usedCategories.includes(
-                        categoryName
-                    )
-            );
+                    !usedCategories.includes(categoryName)
+            )
+        : [];
 
     const allPlayersHaveCategory =
-        players.length === totalPlayers &&
-        players.every(
-            (player) => player.category
-        );
+        !hasCategories ||
+        (players.length === totalPlayers &&
+            players.every((player) => player.category));
+
+    const backRoute = `/menu?mode=${mode}`;
+    const continueRoute = `/lobby?mode=${mode}`;
 
     return (
         <main className="players-page">
             <div className="top-bar">
                 <button
                     className="back-btn"
-                    onClick={() => navigate("/menu-the-floor")}
+                    onClick={() => navigate(backRoute)}
                 >
                     ← Volver
                 </button>
@@ -75,9 +78,8 @@ export function Players() {
                 </div>
             </div>
 
-            <h1>Jugadores</h1>
 
-            {selectedCategories.length < totalPlayers && (
+            {hasCategories && selectedCategories.length < totalPlayers && (
                 <p className="categories-warning">
                     Tenés {selectedCategories.length} categoría(s) elegida(s) y {totalPlayers} jugadores.
                     Elegí más categorías desde el menú principal o vas a repetir.
@@ -122,6 +124,7 @@ export function Players() {
                         key={player.id}
                         className="player-card"
                         onClick={() =>
+                            hasCategories &&
                             setSelectedPlayer(
                                 selectedPlayer?.id === player.id
                                     ? null
@@ -129,14 +132,12 @@ export function Players() {
                             )
                         }
                     >
-                        <div
-                            className="player-info"
-                        >
+                        <div className="player-info">
                             <div className="player-name-start">
                                 {index + 1}. {player.name}
                             </div>
 
-                            {player.category && (
+                            {hasCategories && player.category && (
                                 <div className="player-category">
                                     {player.category}
                                 </div>
@@ -158,43 +159,41 @@ export function Players() {
             <div className="players-section-buttons">
                 {players.length === totalPlayers && (
                     <button
-                        onClick={() => {
-                            navigate("/lobby?mode=game")
-                        }}
+                        onClick={() => navigate(continueRoute)}
                         className="continue-btn"
                         disabled={!allPlayersHaveCategory}
-
                     >
                         Continuar
                     </button>
                 )}
-                {players.length > 1 && (
-                    <button onClick={() => {
-                        const playersWithoutCategory = players.filter(p => !p.category);
 
-                        if (playersWithoutCategory.length === 0) return;
+                {hasCategories && players.length > 1 && (
+                    <button
+                        onClick={() => {
+                            const playersWithoutCategory = players.filter(p => !p.category);
 
-                        const randomIndex = Math.floor(Math.random() * playersWithoutCategory.length);
+                            if (playersWithoutCategory.length === 0) return;
 
-                        setSelectedPlayer(playersWithoutCategory[randomIndex]);
-                    }} disabled={allPlayersHaveCategory} className="choose-btn">
+                            const randomIndex = Math.floor(Math.random() * playersWithoutCategory.length);
+
+                            setSelectedPlayer(playersWithoutCategory[randomIndex]);
+                        }}
+                        disabled={allPlayersHaveCategory}
+                        className="choose-btn"
+                    >
                         Elegir jugador random
                     </button>
                 )}
             </div>
 
-            {selectedPlayer && (
+            {hasCategories && selectedPlayer && (
                 <div
                     className="modal-overlay"
-                    onClick={() =>
-                        setSelectedPlayer(null)
-                    }
+                    onClick={() => setSelectedPlayer(null)}
                 >
                     <div
                         className="modal"
-                        onClick={(e) =>
-                            e.stopPropagation()
-                        }
+                        onClick={(e) => e.stopPropagation()}
                     >
                         <h2>
                             Categoría para{" "}
@@ -203,17 +202,19 @@ export function Players() {
 
                         <button
                             className="close-modal"
-                            onClick={() =>
-                                setSelectedPlayer(null)
-                            }
+                            onClick={() => setSelectedPlayer(null)}
                         >
                             ✕
                         </button>
 
-                        <button disabled={!selectedPlayer.category} className="delete-category" onClick={() => {
-                            setPlayerCategory(selectedPlayer.id, undefined)
-                            setSelectedPlayer(null)
-                        }}>
+                        <button
+                            disabled={!selectedPlayer.category}
+                            className="delete-category"
+                            onClick={() => {
+                                setPlayerCategory(selectedPlayer.id, undefined)
+                                setSelectedPlayer(null)
+                            }}
+                        >
                             Eliminar categoria
                         </button>
 
@@ -229,16 +230,15 @@ export function Players() {
                                                 category[0]
                                             );
 
-                                            setSelectedPlayer(
-                                                null
-                                            );
+                                            setSelectedPlayer(null);
                                         }}
                                     >
                                         {category[0]}
                                     </button>
                                 )
                             )}
-                            <button className="category-option-random"
+                            <button
+                                className="category-option-random"
                                 onClick={() => {
                                     const randomCategory = Math.floor(Math.random() * availableCategories.length)
 
@@ -247,17 +247,15 @@ export function Players() {
                                         availableCategories[randomCategory][0]
                                     );
 
-                                    setSelectedPlayer(
-                                        null
-                                    );
-                                }}>
+                                    setSelectedPlayer(null);
+                                }}
+                            >
                                 RANDOM
                             </button>
                         </div>
                     </div>
                 </div>
-            )
-            }
-        </main >
+            )}
+        </main>
     );
 }
