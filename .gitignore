@@ -28,3 +28,6 @@ fetch_TMDB.mjs
 fetch_Wikipedia.mjs
 fetchDeezerTrackIds.mjs
 fetch_libros.mjs
+fetchMusic.mjs
+fetchFootball.mjs
+
