@@ -35,6 +35,8 @@ import { cuerpo } from "../categories/cuerpo";
 import { canciones2020s } from "../categories/canciones2020s";
 import { cancionesPeliculas } from "../categories/cancionesPeliculas";
 import { ecuaciones } from "../categories/ecuaciones";
+import { anagramas } from "../categories/anagramas";
+import { synonymQuestions } from "../categories/antonimos";
 
 export interface CategoryQuestion {
     text?: string;
@@ -69,8 +71,10 @@ export const categoryQuestions: CategoryGroup[] = [
     ["Politicos", personajesHistoricos],
     ["Mitologia", mitologia],
 
-    ["Series", series],
+    ["Anagramas/completar", anagramas],
+    ["Sinonimos/antonimos", synonymQuestions],
     ["Libros por emojis", librosPorEmojis],
+    ["Series", series],
     ["Actores/Directores", actores],
     ["Peliculas 1920-1969", peliculas1920a1969],
     ["Peliculas 1970-1990", peliculas1970a1990],
