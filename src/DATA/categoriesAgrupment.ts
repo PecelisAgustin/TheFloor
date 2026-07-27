@@ -71,8 +71,8 @@ export const categoryQuestions: CategoryGroup[] = [
     ["Politicos", personajesHistoricos],
     ["Mitologia", mitologia],
 
-    ["Anagramas/completar", anagramas],
-    ["Sinonimos/antonimos", synonymQuestions],
+    ["Anagramas", anagramas],
+    ["Sin/ant(onimos)", synonymQuestions],
     ["Libros por emojis", librosPorEmojis],
     ["Series", series],
     ["Actores/Directores", actores],
