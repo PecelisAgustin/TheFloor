@@ -60,6 +60,8 @@ export const categoryQuestions: CategoryGroup[] = [
     ["Futbolistas retirados", futbolistasRetirados],
     ["Deportistas(no fut)", deportistas],
 
+    ["Anagramas", anagramas],
+    ["Sin/ant(onimos)", synonymQuestions],
     ["Refranes/Frases", frasesConocidas],
     ["Ingles", englishWords],
     ["Portugues", portugueseWords],
@@ -71,14 +73,13 @@ export const categoryQuestions: CategoryGroup[] = [
     ["Politicos", personajesHistoricos],
     ["Mitologia", mitologia],
 
-    ["Anagramas", anagramas],
-    ["Sin/ant(onimos)", synonymQuestions],
+  
     ["Libros por emojis", librosPorEmojis],
     ["Series", series],
     ["Actores/Directores", actores],
     ["Peliculas 1920-1969", peliculas1920a1969],
-    ["Peliculas 1970-1990", peliculas1970a1990],
-    ["Peliculas 1991-2009", peliculas1990a2009],
+    ["Peliculas 70s y 80s", peliculas1970a1990],
+    ["Peliculas 90s y 2000s", peliculas1990a2009],
     ["Peliculas 2010-2026", peliculas2010aActualidad],
     ["Peliculas animadas", animatedMovieQuestions],
     ["Canciones peliculas", cancionesPeliculas],
