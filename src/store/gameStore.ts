@@ -244,7 +244,11 @@ export const useGameStore = create<GameStore>()(
 
       resetGame: () =>
         set((state) => ({
-          players: [],
+          players: state.players.map((player) => ({
+            ...player,
+            points: 0,
+            category: undefined,
+          })),
           tiles: [],
           attackingPlayer: null,
           defendingPlayer: null,
