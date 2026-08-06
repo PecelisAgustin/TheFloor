@@ -147,6 +147,7 @@ export function GamePapaCaliente() {
                                         duelChannel.postMessage({
                                             type: "END_OF_GAME"
                                         });
+                                        duelChannel.disconnect();
                                         navigate("/");
                                     }}
                                 >
@@ -207,7 +208,12 @@ export function GamePapaCaliente() {
                             <button className="secondary-btn" style={{ flex: 1 }} onClick={() => setShowResetModal(false)}>
                                 Cancelar
                             </button>
-                            <button className="start-btn" style={{ flex: 1 }} onClick={() => { resetGame(); navigate("/"); duelChannel.postMessage({ type: "END_OF_GAME" }); }}>
+                            <button className="start-btn" style={{ flex: 1 }} onClick={() => {
+                                resetGame();
+                                navigate("/");
+                                duelChannel.postMessage({ type: "END_OF_GAME" });
+                                duelChannel.disconnect();
+                            }}>
                                 Sí, salir
                             </button>
                         </div>

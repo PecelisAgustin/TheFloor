@@ -37,6 +37,7 @@ import { cancionesPeliculas } from "../categories/cancionesPeliculas";
 import { ecuaciones } from "../categories/ecuaciones";
 import { anagramas } from "../categories/anagramas";
 import { synonymQuestions } from "../categories/antonimos";
+import { advancedMathQuestions } from "../categories/matematicaAvanzada";
 
 export interface CategoryQuestion {
     text?: string;
@@ -93,6 +94,7 @@ export const categoryQuestions: CategoryGroup[] = [
     ["Logos marcas", logos],
 
     ["Cuentas", mathQuestions],
+    ["Matematica avanzada",advancedMathQuestions],
     ["Equivalencias", equivalencias],
     ["Geometria", geometria],
     ["Ecuaciones", ecuaciones],

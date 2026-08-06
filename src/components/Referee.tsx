@@ -40,6 +40,7 @@ export function Referee() {
                 setCurrentCategory(null)
                 setDuelPhase("no-duel")
             } else if (event.data.type === "END_OF_GAME") {
+                duelChannel.disconnect();
                 window.close()
             } else if (event.data.type === "NEW_QUESTION") {
                 // eslint-disable-next-line react-hooks/immutability

@@ -58,6 +58,8 @@ interface GameStore {
   availableCategories: string[];
   addPoints: (playerId: string, points: number) => void;
 
+  allPlayers: Player[];
+
    roomCode: string | null;
  
     setRoomCode: (code: string | null) => void;
@@ -70,6 +72,8 @@ interface GameStore {
 export const useGameStore = create<GameStore>()(
   persist(
     (set, get) => ({
+
+      allPlayers: [],
 
       setRoomCode: (code) => set({ roomCode: code }),
       roomCode: null,
@@ -243,29 +247,35 @@ export const useGameStore = create<GameStore>()(
         }),
 
       resetGame: () =>
-        set((state) => ({
-          players: state.players.map((player) => ({
-            ...player,
-            points: 0,
-            category: undefined,
-          })),
-          tiles: [],
-          attackingPlayer: null,
-          defendingPlayer: null,
-          currentCategory: null,
-          usedQuestion: [],
-          gameWinner: null,
-          pendingPlayers: [],
+  set((state) => {
+    const roster =
+      state.allPlayers.length > 0 ? state.allPlayers : state.players;
 
-          vueltas: 1,
-          vueltasActuales: 1,
-          ronda: 1,
-          actualPlayer: 0,
-          availableCategories:
-            state.selectedCategories.length > 0
-              ? [...state.selectedCategories]
-              : categoryQuestions.map((c) => c[0]),
-        })),
+    return {
+      players: roster.map((player) => ({
+        ...player,
+        points: 0,
+        category: undefined,
+      })),
+      allPlayers: [],
+      tiles: [],
+      attackingPlayer: null,
+      defendingPlayer: null,
+      currentCategory: null,
+      usedQuestion: [],
+      gameWinner: null,
+      pendingPlayers: [],
+
+      vueltas: 1,
+      vueltasActuales: 1,
+      ronda: 1,
+      actualPlayer: 0,
+      availableCategories:
+        state.selectedCategories.length > 0
+          ? [...state.selectedCategories]
+          : categoryQuestions.map((c) => c[0]),
+    };
+  }),
 
       attackingPlayer: null,
       defendingPlayer: null,
@@ -281,6 +291,7 @@ export const useGameStore = create<GameStore>()(
             originalOwnerName: player.name,
             category: player.category,
           })),
+          allPlayers: [...state.players],
           gameWinner: null,
           pendingPlayers: [],
           availableCategories:
