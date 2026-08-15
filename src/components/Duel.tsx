@@ -5,6 +5,7 @@ import { useGameStore } from "../store/gameStore";
 import { type CategoryQuestion } from "../DATA/categoriesAgrupment"
 import type { Player } from "../types/player";
 import { useNavigate } from "react-router-dom";
+import { useFitText } from "./useFitText";
 
 export function Duel() {
     const navigate = useNavigate()
@@ -291,6 +292,19 @@ export function Duel() {
 
     }, [revealAnswer, duelPhase]);
 
+    const answerText = revealAnswer
+        ? [
+            currentQuestion?.possibleAnswers && currentQuestion.possibleAnswers.length > 0
+                ? currentQuestion?.possibleAnswers[0]
+                : currentQuestion?.answer
+        ]
+            .filter(Boolean)
+            .join(" / ")
+        : "";
+
+    const { ref: answerBoxRef, fontSize: answerFontSize } =
+        useFitText(answerText, { min: 16, max: 112 });
+
     return (
         <main className={`
         duel-page
@@ -400,14 +414,12 @@ export function Duel() {
             </section>
 
             <footer className="answer-section">
-                <div className="answer-box">
-                    {revealAnswer
-                        ? [
-                            currentQuestion?.possibleAnswers && currentQuestion.possibleAnswers.length > 0 ? currentQuestion?.possibleAnswers[0] : currentQuestion?.answer
-                        ]
-                            .filter(Boolean)
-                            .join(" / ")
-                        : ""}
+                <div
+                    ref={answerBoxRef}
+                    className="answer-box"
+                    style={{ fontSize: answerFontSize }}
+                >
+                    {answerText}
                 </div>
             </footer>
 

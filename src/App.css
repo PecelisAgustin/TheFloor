@@ -411,13 +411,16 @@ body {
 
 .player-input {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
 
     margin-bottom: 1rem;
 }
 
 .player-input input {
-    width: 320px;
+    flex: 1 1 220px;
+    width: auto;
+    max-width: 320px;
 
     padding: 1rem;
 
@@ -467,6 +470,9 @@ body {
     margin-top: 2rem;
 
     max-width: 90vw;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
 }
 
 .player-card {
@@ -920,14 +926,25 @@ body {
 .answer-box {
     width: min(1600px, 95vw);
 
-     min-height: 140px;
+    height: 140px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    font-size: clamp(4rem, 7vw, 7rem);
+    /* nunca crece ni hace scroll: el font-size se ajusta en JS
+       (ver useFitText) para que el texto siempre entre acá adentro */
+    overflow: hidden;
+    padding: 0.5rem 2rem;
+    box-sizing: border-box;
+
     font-weight: 900;
+    text-align: center;
+    line-height: 1.15;
+
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
 
     background: rgba(255,255,255,.08);
 
@@ -1118,11 +1135,11 @@ body {
 .referee-page {
     min-height: 100vh;
 
-    padding: 2rem;
+    padding: clamp(1rem, 4vw, 2rem);
 
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: clamp(1rem, 4vw, 2rem);
 
     color: white;
     align-items: center;
@@ -1148,7 +1165,8 @@ body {
     justify-content: center;
     align-items: center;
 
-    gap: 2rem;
+    gap: clamp(1rem, 4vw, 2rem);
+    width: 100%;
 }
 
 .referee-image {
@@ -1159,10 +1177,10 @@ body {
 }
 
 .referee-text {
-    font-size: clamp(5rem, 8vw, 8rem);
+    font-size: clamp(1.8rem, 6vw, 5rem);
 
     font-weight: 900;
-    line-height: 1.05;
+    line-height: 1.15;
 
     text-align: center;
 
@@ -1172,7 +1190,7 @@ body {
 .referee-answer {
     text-align: center;
 
-    font-size: 2rem;
+    font-size: clamp(1.3rem, 5vw, 2rem);
     font-weight: 900;
 
     color: #22c55e;
@@ -1180,21 +1198,25 @@ body {
 
 .referee-actions {
     display: flex;
+    flex-wrap: wrap;
 
     justify-content: center;
 
-    gap: 2rem;
+    gap: 1rem;
+
+    width: 100%;
 }
 
 .correct-btn,
 .pass-btn {
     border: none;
 
-    padding: 1rem 3rem;
+    flex: 1 1 140px;
+    padding: 1rem clamp(1.25rem, 5vw, 3rem);
 
     border-radius: 16px;
 
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     font-weight: 700;
 
     cursor: pointer;
@@ -1275,6 +1297,36 @@ body {
     box-shadow: none;
 }
 
+@media (max-width: 480px) {
+    .referee-page {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .referee-page h1 {
+        font-size: 1.6rem;
+    }
+
+    .referee-text {
+        font-size: clamp(1.4rem, 7vw, 2.6rem);
+    }
+
+    .start-duel-btn {
+        width: 100%;
+        padding: 0.9rem 1.5rem;
+        font-size: 1.1rem;
+    }
+
+    .correct-btn,
+    .pass-btn {
+        flex: 1 1 100%;
+    }
+
+    .countdown {
+        font-size: 6rem;
+    }
+}
+
 /*---------------------------------------MENU------------------------------------------------*/
 
 .game-mode-menu {
@@ -1312,6 +1364,7 @@ body {
 
 .game-mode-menu__card {
   width: 340px;
+  max-width: 100%;
   height: 240px;
 
   border: 2px solid rgba(255,255,255,.12);
@@ -1380,9 +1433,10 @@ body {
     padding: 1.5rem;
 
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    gap: 3rem;
+    gap: 2rem;
 
     background:
         radial-gradient(circle at top, #35125f 0%, #190a28 45%, #12071d 100%);
@@ -1391,7 +1445,7 @@ body {
 }
 
 .hot-potato-info {
-    width: 420px;
+    width: min(420px, 100%);
 
     display: flex;
     flex-direction: column;
@@ -1453,7 +1507,7 @@ body {
 }
 
 .hot-potato-scoreboard {
-    min-width: 500px;
+    width: min(500px, 100%);
 
     background: rgba(72, 49, 94, .72);
     border: 2px solid rgba(255,255,255,.12);

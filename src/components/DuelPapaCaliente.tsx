@@ -7,6 +7,7 @@ import { useGameStore } from "../store/gameStore";
 
 import type { Player } from "../types/player";
 import type { CategoryQuestion } from "../DATA/categoriesAgrupment";
+import { useFitText } from "./useFitText";
 
 export function DuelPapaCaliente() {
     const navigate = useNavigate();
@@ -374,6 +375,19 @@ export function DuelPapaCaliente() {
 
     }, [countdown, phase]);
 
+    const answerText = revealAnswer
+        ? [
+            currentQuestion?.possibleAnswers && currentQuestion.possibleAnswers.length > 0
+                ? currentQuestion?.possibleAnswers[0]
+                : currentQuestion?.answer
+        ]
+            .filter(Boolean)
+            .join(" / ")
+        : "";
+
+    const { ref: answerBoxRef, fontSize: answerFontSize } =
+        useFitText(answerText, { min: 16, max: 112 });
+
     function nextPlayer() {
         const players = orderedPlayersRef.current;
         const index = currentPlayerIndexRef.current;
@@ -501,16 +515,12 @@ export function DuelPapaCaliente() {
 
             <footer className="answer-section">
 
-                <div className="answer-box">
-
-                    {revealAnswer
-                        ? [
-                            currentQuestion?.possibleAnswers && currentQuestion.possibleAnswers.length > 0 ? currentQuestion?.possibleAnswers[0] : currentQuestion?.answer
-                        ]
-                            .filter(Boolean)
-                            .join(" / ")
-                        : ""}
-
+                <div
+                    ref={answerBoxRef}
+                    className="answer-box"
+                    style={{ fontSize: answerFontSize }}
+                >
+                    {answerText}
                 </div>
 
             </footer>

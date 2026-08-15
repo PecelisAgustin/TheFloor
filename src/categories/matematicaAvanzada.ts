@@ -158,7 +158,6 @@ export const advancedMathQuestions: CategoryQuestion[] = [
   { text: "ln(e²)", answer: "2" },
   { text: "ln(e³)", answer: "3" },
   { text: "ln(e⁵)", answer: "5" },
-  { text: "e^(ln 5)", answer: "5" },
 
   // Propiedades de logaritmos
   { text: "log₁₀2 + log₁₀5", answer: "1" },

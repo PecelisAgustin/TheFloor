@@ -35,9 +35,10 @@ import { cuerpo } from "../categories/cuerpo";
 import { canciones2020s } from "../categories/canciones2020s";
 import { cancionesPeliculas } from "../categories/cancionesPeliculas";
 import { ecuaciones } from "../categories/ecuaciones";
-import { anagramas } from "../categories/anagramas";
-import { synonymQuestions } from "../categories/antonimos";
+import { palabras } from "../categories/palabras";
 import { advancedMathQuestions } from "../categories/matematicaAvanzada";
+import { cancionesLatinas } from "../categories/rockNacional";
+import { personajesPeliculas } from "../categories/personajesPeliculas";
 
 export interface CategoryQuestion {
     text?: string;
@@ -61,9 +62,8 @@ export const categoryQuestions: CategoryGroup[] = [
     ["Futbolistas retirados", futbolistasRetirados],
     ["Deportistas(no fut)", deportistas],
 
-    ["Anagramas", anagramas],
-    ["Sin/ant(onimos)", synonymQuestions],
-    ["Refranes/Frases", frasesConocidas],
+    ["Palabras", palabras],
+    ["Frases/refranes", frasesConocidas],
     ["Ingles", englishWords],
     ["Portugues", portugueseWords],
 
@@ -78,12 +78,14 @@ export const categoryQuestions: CategoryGroup[] = [
     ["Libros por emojis", librosPorEmojis],
     ["Series", series],
     ["Actores/Directores", actores],
+    ["Personajes peliculas", personajesPeliculas],
     ["Peliculas 1920-1969", peliculas1920a1969],
     ["Peliculas 70s y 80s", peliculas1970a1990],
     ["Peliculas 90s y 2000s", peliculas1990a2009],
     ["Peliculas 2010-2026", peliculas2010aActualidad],
     ["Peliculas animadas", animatedMovieQuestions],
     ["Canciones peliculas", cancionesPeliculas],
+    ["Rock nacional", cancionesLatinas],
     ["Musica 80s o antes", canciones80s],
     ["Musica 90s", canciones90s],
     ["Musica 2000s", canciones2000s],

@@ -117,6 +117,6 @@ export const canciones90s: CategoryQuestion[] = [
     { answer: "The Rhythm Of The Night - Corona", trackId: 3413806581 },
     { answer: "El Matador - Los Fabulosos Cadillacs", trackId: 6686056 },
     { answer: "El Baile De La Gambeta - Bersuit Vergarabat", trackId: 2330477 },
-    { answer: "Persiana Americana Remasterizado 2007 - Soda Stereo", trackId: 13247454 },
+    { answer: "Persiana Americana - Soda Stereo", trackId: 13247454 },
 
 ];
