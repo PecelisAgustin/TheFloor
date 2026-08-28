@@ -1,18 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-/**
- * Ajusta automáticamente el font-size de un elemento para que su
- * contenido siempre entre dentro del contenedor, sin necesidad de
- * scroll. Reduce el tamaño de a poco hasta que scrollWidth/scrollHeight
- * dejan de superar el tamaño visible del elemento.
- *
- * Uso:
- *   const { ref, fontSize } = useFitText(answerText, { max: 112, min: 16 });
- *   <div ref={ref} style={{ fontSize }}>{answerText}</div>
- *
- * IMPORTANTE: el elemento (o su padre) debe tener una altura fija
- * (no min-height) para que la medición tenga sentido.
- */
 export function useFitText(
     text: string,
     options?: { min?: number; max?: number; step?: number }

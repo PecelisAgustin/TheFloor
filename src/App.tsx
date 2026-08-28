@@ -9,6 +9,7 @@ import { Menu } from "./components/Menu";
 import { GamePapaCaliente } from "./components/GamePapaCaliente";
 import { DuelPapaCaliente } from "./components/DuelPapaCaliente";
 import { Lobby } from "./components/Lobby";
+import { JoinPlayer } from "./components/joinPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/duel-papa-caliente" element={<DuelPapaCaliente />} />
         <Route path="/referee" element={<Referee />} />
         <Route path="/lobby" element={<Lobby />} />
+        <Route path="/join" element={<JoinPlayer />} />
 
       </Routes>
     </BrowserRouter>

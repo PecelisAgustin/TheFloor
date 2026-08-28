@@ -3,8 +3,19 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { useGameStore } from "../store/gameStore";
 import type { Player } from "../types/player";
 import { categoryQuestions } from "../DATA/categoriesAgrupment";
+import { useEffect, useMemo } from "react";
+import { QRCodeSVG } from "qrcode.react";
+import { generateRoomCode } from "../utils/roomCode";
+import { playersChannel } from "../utils/playersChannel";
 
 export function Players() {
+
+
+    // dentro del componente Players:
+    const roomCode = useMemo(() => generateRoomCode(), []);
+    const joinUrl = `${window.location.origin}/join?room=${roomCode}`;
+
+
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const mode = searchParams.get("mode") === "papa-caliente" ? "papa-caliente" : "game";
@@ -21,6 +32,28 @@ export function Players() {
 
     const addPlayer = useGameStore((s) => s.addPlayer);
     const removePlayer = useGameStore((s) => s.removePlayer);
+
+    useEffect(() => {
+        playersChannel.connect(roomCode);
+
+        const unsubscribe = playersChannel.onJoin(({ name }) => {
+            // Leemos el estado fresco del store en vez de usar el `players`
+            // capturado por este closure (que puede haber quedado desactualizado).
+            const state = useGameStore.getState();
+
+            if (state.players.length >= state.totalPlayers) {
+                // Sala completa: ignoramos el nuevo jugador.
+                return;
+            }
+
+            state.addPlayer(name);
+        });
+
+        return () => {
+            unsubscribe();
+            playersChannel.disconnect();
+        };
+    }, [roomCode]);
 
     const handleAdd = () => {
         const trimmedName = name.trim();
@@ -65,6 +98,14 @@ export function Players() {
 
     return (
         <main className="players-page">
+            <div className="qr-join">
+                <div className="qr-box is-waiting qr-box--small">
+                    <QRCodeSVG value={joinUrl} size={80} />
+                </div>
+                <p className="qr-join-title">
+                    Agrega jugadores desde tu celu
+                </p>
+            </div>
             <div className="top-bar">
                 <button
                     className="back-btn"
@@ -77,6 +118,8 @@ export function Players() {
                     Jugadores {players.length} / {totalPlayers}
                 </div>
             </div>
+
+
 
 
             {hasCategories && selectedCategories.length < totalPlayers && (
