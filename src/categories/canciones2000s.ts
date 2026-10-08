@@ -117,5 +117,11 @@ export const canciones2000s: CategoryQuestion[] = [
     { answer: "Pa' Que Retozen - Tego Calderón", trackId: 38217121 },
     { answer: "Siente El Boom (feat. Randy) - Boy Wonder Cf", trackId: 3434617501 },
     { answer: "Yo Voy - Zion & Lennox", trackId: 78316091 },
+    { answer: "Dani California - Red Hot Chili Peppers", trackId: 680516 },
+    { answer: "Stop Crying Your Heart Out - Oasis", trackId: 532768 },
+    { answer: "Me Gustas Tu - Manu Chao", trackId: 71608366 },
+    { answer: "La Argentinidad Al Palo - Bersuit Vergarabat", trackId: 2330475 },
+    { answer: "Pensamientos - Airbag", trackId: 1500617642 },
+    
 
 ];

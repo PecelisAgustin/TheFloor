@@ -63,5 +63,18 @@ export const cancionesLatinas = [
     { answer: "El amor después del amor - Fito Páez", trackId: 3871625 },
     { answer: "11 Y 6 - Fito Páez", trackId: 3460998 },
     { answer: "Mujer Amante - Rata Blanca", trackId: 1153386 },
+    { answer: "Crimen - Gustavo Cerati", trackId: 13255149 },
+    { answer: "Pensamientos - Airbag", trackId: 1500617642 },
+    { answer: "Ciudad Mágica - Tan Bionica", trackId: 3835208481 },
+    { answer: "Los Piratas Remastered 2001 - Los Auténticos Decadentes", trackId: 13273353 },
+    { answer: "Toco Y Me Voy - Bersuit Vergarabat", trackId: 1761138017 },
+    { answer: "Por Mil Noches - Airbag", trackId: 2874969242 },
+    { answer: "Cae el Sol - Airbag", trackId: 2875186362 },
+    { answer: "Pensamientos - Airbag", trackId: 1500617642 },
+    { answer: "Bicho de Ciudad - Los Piojos", trackId: 4114440951 },
+    { answer: "Yegua - Babasónicos", trackId: 1109640 },
+    { answer: "Puesto - Babasónicos", trackId: 1109646 },
+    { answer: "La Soledad - Bersuit Vergarabat", trackId: 2330470 },
+    { answer: "Será - Las Pelotas", trackId: 89247879 },
 
 ];

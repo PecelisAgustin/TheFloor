@@ -120,4 +120,8 @@ export const peliculas1970a1990: CategoryQuestion[] = [
     { image: "https://image.tmdb.org/t/p/original/2SRJMIoJzABzgyGw01U6VbQbvJD.jpg", answer: "Grease" },
     { image: "https://image.tmdb.org/t/p/original/yjGllQUm28R4X9xD9T5xMszirgw.jpg", answer: "Stand by Me", possibleAnswers: ["Cuenta Conmigo"] },
     { image: "https://image.tmdb.org/t/p/original/5UX6M0aEphiW6Xmy5rpYX75glbo.jpg", answer: "Gremlins" },
+    { image: "https://image.tmdb.org/t/p/original/9IYyCLf5NNAQFK9pNtqzEU9HWzM.jpg", answer: "Brazil" },
+    { image: "https://image.tmdb.org/t/p/original/ApB0mF2d5Oqioi3yxjuogiotSLI.jpg", answer: "Eraserhead", possibleAnswers: ["Cabeza borradora"] },
+    { image: "https://image.tmdb.org/t/p/original/vhu2Nscn4HTi5gwYBRXU3OJqVCo.jpg", answer: "Christiane F.", possibleAnswers: ["Los niños de la estación del Zoo", "Wir Kinder vom Bahnhof Zoo"] },
+    { image: "https://image.tmdb.org/t/p/original/3Na31ta8vDuKOgQuPLdSZLs8bCB.jpg", answer: "Come and See", possibleAnswers: ["Ven y mira"] },
 ];
